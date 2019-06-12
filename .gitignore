@@ -7,3 +7,5 @@ extras
 electron-builder.json
 yarn-error.log
 *.log
+dist/bundle.json
+dist/bundle.js.map
