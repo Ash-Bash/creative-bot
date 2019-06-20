@@ -114,10 +114,11 @@ function createWindow() {
       width: 1280,
       height: 720,
       frame: false,
-      icon: path.join(__dirname, 'dist/.icon-ico/icon_Dev.ico')
+      icon: path.join(__dirname, 'dist/.icon-ico/icon_Dev.ico'), 
+      offscreen: true
     });
   } else {
-    win = new BrowserWindow({ width: 1280, height: 720, frame: false });
+    win = new BrowserWindow({ width: 1280, height: 720, frame: false, offscreen: true });
   }
 
   // and load the index.html of the app.
@@ -126,6 +127,7 @@ function createWindow() {
   } else {
     win.loadURL(`file://${__dirname}/dist/index.html`);
   }
+
   win.on('close', function() {
     process.exit();
   });
@@ -922,5 +924,7 @@ ipcMain.on('sendmessage', (event, { from, message }) => {
     event.sender.send('show-bannermessage', [bannerMessage]);
   }
 });
+
+app.disableHardwareAcceleration();
 
 app.on('ready', createWindow);
